@@ -1,26 +1,21 @@
 package org.eclipse.che.examples;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+@org.springframework.stereotype.Controller
+public class GreetingController {
 
-public class GreetingController implements Controller
-{
+    @RequestMapping("/greet")
+    public ModelAndView greet(@RequestParam(value ="user", required =false) String user) {
+        String result = "";
+        if (user != null) {
+            result = "Hello, " + user + "!";
+        }
 
-   @Override
-   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
-   {
-      String userName = request.getParameter("user");
-      String result = "";
-      if (userName != null)
-      {
-        result = "Hello, " + userName + "!";
-      }
-
-      ModelAndView view = new ModelAndView("hello_view");
-      view.addObject("greeting", result);
-      return view;
-   }
+        ModelAndView view = new ModelAndView("hello_view");
+        view.addObject("greeting", result);
+        return view;
+    }
 }

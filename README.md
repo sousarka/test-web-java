@@ -1,5 +1,5 @@
 # web-spring-java-simple
-A simple Spring app
+A simple Spring application
 
 # Developer Workspace
 
